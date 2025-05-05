@@ -2,35 +2,45 @@ package tech.angelofdiasg.app;
 
 import tech.angelofdiasg.auxiliares.Endereco;
 import tech.angelofdiasg.auxiliares.Telefone;
+import tech.angelofdiasg.pessoas.Cliente;
+import tech.angelofdiasg.pessoas.Funcionario;
 import tech.angelofdiasg.pessoas.Pessoa;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
 
-        Pessoa pessoa1 = new Pessoa();
-        pessoa1.setNome("Juninho");
+        Scanner scanner = new Scanner(System.in);
 
-        //Data de nacimento
-        LocalDate dataNascimento = LocalDate.
-                of(1995, 4, 29);
-        pessoa1.setDataNascimento(dataNascimento);
+        while (true) {
+            System.out.println("\n=== MENU ===");
+            System.out.println("1 - Cadastrar Cliente");
+            System.out.println("2 - Cadastrar Funcionário");
+            System.out.println("0 - Sair");
+            System.out.print("Opção: ");
+            String opcao = scanner.nextLine();
 
-        //Endereço
-        String logradouro = "logradouro 1";
-        String complemento = "casa casa";
-        String numero = "2A";
-        String bairro = "O bairro";
-        String cidade = "João";
-        String cep = "55500-999";
-
-        Endereco endereco1 = new Endereco(logradouro,complemento,numero,bairro,cidade,cep);
-        pessoa1.setEndereco(endereco1);
-
-        Telefone telefone1 = new Telefone();
-        telefone1.setDdd("111");
-        telefone1.setNumero("123654987");
-
+            switch (opcao) {
+                case "1":
+                    Cliente cliente = new Cliente();
+                    cliente.cadastrar(scanner);
+//                    exibirCliente(cliente);
+                    break;
+                case "2":
+                    Funcionario funcionario = new Funcionario();
+                    funcionario.cadastrar(scanner);
+//                    exibirFuncionario(funcionario);
+                    break;
+                case "0":
+                    System.out.println("Encerrando o programa...");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        }
     }
 }

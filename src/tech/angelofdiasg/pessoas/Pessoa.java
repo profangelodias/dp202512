@@ -15,10 +15,6 @@ public class Pessoa {
 
     private List<Telefone> telsContato = new ArrayList<>();
 
-    public void cadastrar(){
-
-    }
-
     public int obterIdade(){
         LocalDate dataAtual = LocalDate.now();
         Period periodo = Period.between(dataNascimento, dataAtual);
@@ -53,7 +49,17 @@ public class Pessoa {
         return telsContato;
     }
 
-    public void setTelsContato(Telefone telefone) {
+    public void setTelsContato(List<Telefone> telsContato) {
+        this.telsContato = telsContato;
+    }
+
+    public void adicionarTelefone(Telefone telefone) {
         this.telsContato.add(telefone);
     }
+
+    protected Pessoa(){
+        System.out.println("Construtor de Pessoa");
+    }
+
+
 }
